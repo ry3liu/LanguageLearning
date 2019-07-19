@@ -13,6 +13,9 @@ public class storeWord : MonoBehaviour
 	
 	public static string word;
 	
+	public instantButton generate;
+	GameObject input;
+	
 	private static bool entered = false;
 	
 	SpriteRenderer one;
@@ -70,9 +73,15 @@ public class storeWord : MonoBehaviour
 	
 	public void callWordsImage(string check){
 		found = english_words.FindAll(w=>w.StartsWith(check.ToLower()));
+		input = GameObject.FindWithTag("input");
+		print(input.name);
+		float addition = 0f;
 		foreach(string hi in found){
 			print(hi);
 			word = hi;
+			
+			generate.generatePreFab(hi, input.GetComponent<RectTransform>(), addition);
+			addition = addition + 30;
 			
 		}
 		//SceneManager.LoadScene("medicine");

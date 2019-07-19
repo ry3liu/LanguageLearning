@@ -6,17 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class chooseText : MonoBehaviour
 {
-	public Text showText;
+	
 	private string typeIn ;
 	public storeWord each;
 	
-	private static bool entered=false;
+	
 	
 	public void onTextChanged(string enters){
-		showText.text = enters;
-		print(showText.text);
-		each.callWordsImage(showText.text);
-		entered= true;
+		//showText = GetComponentInChildren<Text>();
+		//showText.text = enters;
+		//print(showText.text);
+		print(enters);
+		each.callWordsImage(enters);
+		
+		
 		
 		//SceneManager.LoadScene("medicine");
 		
