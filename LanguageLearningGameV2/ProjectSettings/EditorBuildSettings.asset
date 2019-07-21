@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/medicine.unity
     guid: c4e5806039dd4d34da478af162c55cf5
+  - enabled: 1
+    path: Assets/Scenes/foodSelection.unity
+    guid: f32a44a6ec0e3ca4a91250664749690d
   m_configObjects: {}

@@ -17,7 +17,7 @@ public class toggleText : MonoBehaviour
 	
     void Start()
     {
-		 iten = new List<string> {"tomate", "meat","rasberry","cauliflower"};
+		/* iten = new List<string> {"tomate", "meat","rasberry","cauliflower"};
         childrenList = GetComponentsInChildren<Toggle> ();
 		//hi = gameObject.GetComponentInChildren<Text>();
 		for(i=0; i< iten.Count; i++){
@@ -26,7 +26,7 @@ public class toggleText : MonoBehaviour
 			childToggleText = eachChild.GetComponentInChildren<Text>();
 			childToggleText.text = iten[i];
 		}
-		
+		*/
     }
 
     // Update is called once per frame

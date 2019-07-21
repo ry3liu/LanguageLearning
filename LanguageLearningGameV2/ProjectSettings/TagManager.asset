@@ -7,6 +7,7 @@ TagManager:
   - instruction
   - mainCanvas
   - input
+  - text
   layers:
   - Default
   - TransparentFX
