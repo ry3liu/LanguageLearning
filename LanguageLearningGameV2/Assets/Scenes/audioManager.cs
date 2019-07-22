@@ -35,10 +35,12 @@ public class audioManager : MonoBehaviour
 			eachSound.sound = (AudioClip)Resources.Load(address);
 			eachSound.audioSource.clip = eachSound.sound;
 			
+			/*if(u>0){
 			foreach(Audio oneSou in sounds){
 				print(oneSou.name);
 			}
-			
+			}
+			*/
 			sounds[u]=eachSound;
 			print("in the audio manager function and display name" + u + " " +sounds[u].name);
 			u=u+1;
@@ -53,9 +55,15 @@ public class audioManager : MonoBehaviour
 		print("entered play sound");
 		print("name to search for: " + name);
 		
-		foreach(Audio one in sounds){
+		/*foreach(Audio one in sounds){
 			print(one.name);
-		}
+			one.audioSource.Play();
+			print("&&&&  testing if : the audio names are the same");
+			if(name == one.name){
+				print("the audio names are the same");
+				
+			}
+		}*/
 		
 		Audio oneSound = Array.Find(sounds, sound=>sound.name == name);
 		print("trying to play the sound" + oneSound.name);

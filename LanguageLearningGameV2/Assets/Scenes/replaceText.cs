@@ -21,11 +21,11 @@ public class replaceText : MonoBehaviour
 		FindObjectOfType<audioManager>().setSound("sympathy",soundRecognizeWord);
 		FindObjectOfType<audioManager>().setSound("cheering",soundRecognizeWord);
 		string inString = "le chou-fleur";
-		storeWord.english_words.Add("cauliflower");
-		updatePic.listWords.Add(inString);
+		//storeWord.english_words.Add("cauliflower");
+		//updatePic.listWords.Add(inString);
 		
-		storeWord.english_words.Add("scallops");
-		updatePic.listWords.Add("les coquilles Saint-Jacques");
+		//storeWord.english_words.Add("scallops");
+		//updatePic.listWords.Add("les coquilles Saint-Jacques");
 		
 		print("print index of stirng for sex "+ inString.IndexOf("le "));
         

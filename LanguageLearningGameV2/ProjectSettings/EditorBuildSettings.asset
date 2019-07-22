@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/forestThreeCircumstance.unity
     guid: d371ae5524232ef4e90d6ecab51432c1
+  - enabled: 1
+    path: Assets/Scenes/introduceGame.unity
+    guid: f31e64a726b5ca54f83f551ca1d901ca
+  - enabled: 1
+    path: Assets/Scenes/recognizeWords.unity
+    guid: e4779ced9cec6f54f9b4facf28863f97
   m_configObjects: {}

@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   one: {fileID: 0}
+  buttonNext: {fileID: 1038999629}
 --- !u!1 &94895097
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +350,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   french_words: []
   generate: {fileID: 0}
+  sounds:
+  - name: 
+    sound: {fileID: 0}
+    volume: 0
+    audioSource: {fileID: 0}
+  - name: 
+    sound: {fileID: 0}
+    volume: 0
+    audioSource: {fileID: 0}
 --- !u!224 &417451004
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1318,7 +1328,7 @@ GameObject:
   - component: {fileID: 1854956742}
   - component: {fileID: 1854956741}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1464,7 +1474,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 417451003}
-        m_MethodName: playSound
+        m_MethodName: playS
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1621,15 +1631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c59ed282bde93b49898da836a1184ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: 
-    sound: {fileID: 0}
-    volume: 0
-    audioSource: {fileID: 0}
-  - name: 
-    sound: {fileID: 0}
-    volume: 0
-    audioSource: {fileID: 0}
 --- !u!4 &2091009322
 Transform:
   m_ObjectHideFlags: 0

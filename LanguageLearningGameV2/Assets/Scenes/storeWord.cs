@@ -7,7 +7,7 @@ using TMPro;
 
 public class storeWord : MonoBehaviour
 {
-	public Dictionary<string, string> wordList = new Dictionary<string, string>();
+	public  Dictionary<string, string> wordList = new Dictionary<string, string>();
 	public List<string> french_words = new List<string>();
 	public static List<string> english_words = new List<string>();
 	private Dictionary <string, string> french = new Dictionary<string, string>();
@@ -148,6 +148,7 @@ public class storeWord : MonoBehaviour
 		if(play){
 		print("didn't call pronounce workd");
 		FindObjectOfType<audioManager>().setSound(englishPic,sounds);
+		//playS(englishPic);
 		FindObjectOfType<audioManager>().playSound(englishPic,sounds);
 		
 		}
@@ -184,8 +185,9 @@ public class storeWord : MonoBehaviour
 		
 	}
 	
-	public void playSound(){
+	public void playS(){
 		FindObjectOfType<audioManager>().playSound(wordList[french[updatePic.listWords[i]]],sounds );
+		//FindObjectOfType<audioManager>().playSound(englishPic,sounds);
 	}
 
     // Update is called once per frame

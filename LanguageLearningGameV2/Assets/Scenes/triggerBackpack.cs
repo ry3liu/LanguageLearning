@@ -43,8 +43,8 @@ public class triggerBackpack : MonoBehaviour
 		toggle_distance= 20f;
 		
         if (switchList == 1) {
-			
-			items = new List<string> {"cauliflower", "bellpepper", "eggplant", "scallops"};
+			items =storeWord.english_words;
+			//items = new List<string> {"cauliflower", "bellpepper", "eggplant", "scallops"};
 			nounList = new List<string> {"la framboise", "le medicine"};
 			print(items[0]);
 		} else if (switchList == 2) {
@@ -60,14 +60,17 @@ public class triggerBackpack : MonoBehaviour
 	
 	//SceneManager.LoadScene(items[0]);
         words.text = items[0];
-		
+		/*
 		storeWord.english_words.Add("cauliflower");
 		storeWord.english_words.Add("bellpepper");
 		storeWord.english_words.Add("eggplant");
 		storeWord.english_words.Add("scallops");
+		*/
 		
     print("calling picture prefab");
-	foreach(string eachOne in storeWord.english_words){
+	foreach(string eachOne in items){
+		//print("printing item from list");
+		//print(eachOne);
 		
 	generateSpritePreFab(cabin,eachOne );
 	generateTogglePreFab(canvas,eachOne );
@@ -111,6 +114,9 @@ public class triggerBackpack : MonoBehaviour
 			if(items.Count !=1){
 			items.RemoveAt(0);
 			//nounList.RemoveAt(0);
+			}
+			else{
+				SceneManager.LoadScene("recognizeWords");
 			}
 			
 			//words.text = nounList[0];

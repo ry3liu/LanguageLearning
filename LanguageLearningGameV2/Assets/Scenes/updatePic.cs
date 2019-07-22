@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class updatePic : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class updatePic : MonoBehaviour
 	public storeWord one;
 	public static List<string> listWords = new List<string>();
 	GameObject buttonUI;
+	public Button buttonNext;
 	
 
 	
@@ -17,6 +19,7 @@ public class updatePic : MonoBehaviour
     {
 		one= GameObject.Find("GameObject").GetComponent<storeWord>();
 		buttonUI = GameObject.Find("soundButton");
+		buttonNext.GetComponentInChildren<Text>().text = "I got it";
 		//buttonUI.SetActive(false);
 		yield return new WaitForEndOfFrame();
 		//one.sayHi(storeWord.word);
