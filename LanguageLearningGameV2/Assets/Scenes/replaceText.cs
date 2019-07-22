@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 
 public class replaceText : MonoBehaviour
 {
@@ -12,12 +13,13 @@ public class replaceText : MonoBehaviour
 	public storeWord instanceOfStoreWord;
 	string[] printWord = new string[4];
 	public Button[] buttonList = new Button [4]; 
-	public Audio [] soundRecognizeWord = new Audio[3];
+	public Audio [] soundRecognizeWord = new Audio[4];
 	
     void Start()
     {
 		
 		FindObjectOfType<audioManager>().setSound("sympathy",soundRecognizeWord);
+		FindObjectOfType<audioManager>().setSound("cheering",soundRecognizeWord);
 		string inString = "le chou-fleur";
 		storeWord.english_words.Add("cauliflower");
 		updatePic.listWords.Add(inString);
@@ -37,11 +39,29 @@ public class replaceText : MonoBehaviour
 		
     }
 	public void buttonClick(Button click, string toCheck){
+		print("the true words " + toCheck);
+		print("the button words " + click.GetComponentInChildren<Text>().text);
+		
+		
+		
 		if(click.GetComponentInChildren<Text>().text ==toCheck ){
-			overallHouseKeeper();
+			print("You got it");
+			FindObjectOfType<audioManager>().playSound("cheering",soundRecognizeWord);
+			
+			if(i==storeWord.english_words.Count){
+				print(")0000000reached end of game");
+				SceneManager.LoadScene("forestThreeCircumstance");
+				
+				}
+			//do not execute house keep in that case
+			else{
+				overallHouseKeeper();
+				}
+			
 		}
 		
 		else{
+			print("Try again");
 			FindObjectOfType<audioManager>().playSound("sympathy",soundRecognizeWord);
 		}
 	}

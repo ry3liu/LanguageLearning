@@ -34,6 +34,11 @@ public class audioManager : MonoBehaviour
 			string address = "Audio/" + eachS;
 			eachSound.sound = (AudioClip)Resources.Load(address);
 			eachSound.audioSource.clip = eachSound.sound;
+			
+			foreach(Audio oneSou in sounds){
+				print(oneSou.name);
+			}
+			
 			sounds[u]=eachSound;
 			print("in the audio manager function and display name" + u + " " +sounds[u].name);
 			u=u+1;

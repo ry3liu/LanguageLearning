@@ -40,10 +40,17 @@ public class storeWord : MonoBehaviour
 		ButtonPrefab = GameObject.Find("Button");
 		//ButtonPrefab.SetActive(false);
 		print("call storeWord first");
-		wordList.Add("Les coquilles Saint-Jacques", "scallops");
+		wordList.Add("les coquilles Saint-Jacques", "scallops");
 		wordList.Add("le poivron", "bellpepper");
 		wordList.Add("le chou-fleur", "cauliflower");
 		wordList.Add("l'aubergine", "eggplant");
+		
+		wordList.Add("la moufle", "mitten");
+		wordList.Add("le sparadrap", "surgicaltape");
+		
+		
+		wordList.Add("le casque", "helmet");
+		wordList.Add("la pilule", "pill");
 		//or words.Value
 		
 		foreach(KeyValuePair<string, string> words in wordList){
@@ -136,9 +143,13 @@ public class storeWord : MonoBehaviour
 		//pic = Resources.Load<Sprite>(wordList[french[found[0]]]);
 		pic = Resources.Load<Sprite>(englishPic);
 		imagery.sprite = pic;
-		FindObjectOfType<audioManager>().setSound(englishPic,sounds);
+		
+		print("!!!! check to see if : didn't call pronounce workd");
 		if(play){
+		print("didn't call pronounce workd");
+		FindObjectOfType<audioManager>().setSound(englishPic,sounds);
 		FindObjectOfType<audioManager>().playSound(englishPic,sounds);
+		
 		}
 		
 	}
@@ -159,6 +170,8 @@ public class storeWord : MonoBehaviour
 		i=i+1;
 		string frenchFromButton = updatePic.listWords[i];
 		string Englishwords = wordList[french[frenchFromButton]];
+		
+		//english list of selected word
 		english_words.Add(Englishwords);
 		print("!!!!!!show words" +Englishwords);
 		print("^^^^ just trying to print anything");
