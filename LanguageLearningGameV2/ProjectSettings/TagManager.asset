@@ -8,6 +8,7 @@ TagManager:
   - mainCanvas
   - input
   - text
+  - itemInForest
   layers:
   - Default
   - TransparentFX

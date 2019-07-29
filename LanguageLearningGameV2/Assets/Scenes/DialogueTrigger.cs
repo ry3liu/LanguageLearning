@@ -11,10 +11,10 @@ public class DialogueTrigger : MonoBehaviour
 	public Button nextPhrase;
 	
 	
-	public void TriggerDialogue()
+	 void Start()
 	{
 		nextPhrase.GetComponentInChildren<Text>().text = "Next";
-		FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+		//FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
 		
 	}
 }

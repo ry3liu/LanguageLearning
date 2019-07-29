@@ -7,7 +7,7 @@ using TMPro;
 
 public class storeWord : MonoBehaviour
 {
-	public  Dictionary<string, string> wordList = new Dictionary<string, string>();
+	public static Dictionary<string, string> wordList = new Dictionary<string, string>();
 	public List<string> french_words = new List<string>();
 	public static List<string> english_words = new List<string>();
 	private Dictionary <string, string> french = new Dictionary<string, string>();
@@ -39,6 +39,10 @@ public class storeWord : MonoBehaviour
 		canvas = GameObject.Find("Canvas");
 		ButtonPrefab = GameObject.Find("Button");
 		//ButtonPrefab.SetActive(false);
+		//each = GameObject.FindWithTag("Player");
+		//each.SetActive(false);
+		
+		
 		print("call storeWord first");
 		wordList.Add("les coquilles Saint-Jacques", "scallops");
 		wordList.Add("le poivron", "bellpepper");
@@ -161,33 +165,45 @@ public class storeWord : MonoBehaviour
 	}
 	
 	public void gotWord(){
+		//ButtonPrefab.SetActive(true);
+		//each.SetActive(true);
 		//get the french and english word and pass it to sayHi.
 		//this is an onclick method
 		//find a way to go to next thing in list.
+		i=i+1;
+		
+		print("^^^^ just trying to print anything");
+		print("here's the value of i");
+		print(i);
 		if(i==updatePic.listWords.Count){
 			SceneManager.LoadScene("foodSelection");
 		}
+		else{
 		
-		i=i+1;
 		string frenchFromButton = updatePic.listWords[i];
 		string Englishwords = wordList[french[frenchFromButton]];
 		
 		//english list of selected word
+		//english_words.Add(Englishwords);
 		english_words.Add(Englishwords);
-		print("!!!!!!show words" +Englishwords);
-		print("^^^^ just trying to print anything");
-		print("here's the value of i");
-		print(i);
-		print(Englishwords);
+		print("here's the value of array size english_words");
+		print(english_words.Count -1);
+		print("!!!!!!show Englishwords" +Englishwords);
+		
+		
+		print("!!!!!!compare French" +frenchFromButton);
 		setFrenchText(frenchFromButton);
 		sayHi( Englishwords, true);
-		
+		}
 		
 	}
 	
 	public void playS(){
 		FindObjectOfType<audioManager>().playSound(wordList[french[updatePic.listWords[i]]],sounds );
 		//FindObjectOfType<audioManager>().playSound(englishPic,sounds);
+	}
+	public void printhi(){
+		print("hi");
 	}
 
     // Update is called once per frame

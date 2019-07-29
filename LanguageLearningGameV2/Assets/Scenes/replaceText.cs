@@ -29,9 +29,15 @@ public class replaceText : MonoBehaviour
 		
 		print("print index of stirng for sex "+ inString.IndexOf("le "));
         
-		
+		foreach(string oneWord in storeWord.english_words){
+			print("storeWord.english_words "+oneWord);
+		}
 		print(storeWord.english_words[i]);
 		print(updatePic.listWords[i]);
+		
+		foreach(string ddd in updatePic.listWords){
+			print("updatePic.listWords "+ddd);
+		}
 		
 		overallHouseKeeper();
 		

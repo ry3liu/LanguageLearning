@@ -43,7 +43,7 @@ public class triggerBackpack : MonoBehaviour
 		toggle_distance= 20f;
 		
         if (switchList == 1) {
-			items =storeWord.english_words;
+			items =new List<string> (storeWord.english_words);
 			//items = new List<string> {"cauliflower", "bellpepper", "eggplant", "scallops"};
 			nounList = new List<string> {"la framboise", "le medicine"};
 			print(items[0]);
@@ -103,13 +103,13 @@ public class triggerBackpack : MonoBehaviour
 			
 			childToggleText = eachChild.GetComponentInChildren<Text>();
 			print("^^^^ show toggle text");
-			print(childToggleText.text);
+			//print(childToggleText.text);
 			if(childToggleText.text==items[0]){
 				eachChild.isOn = true;
 			}
 			
 		}
-			
+			print("check item count in backpack");
 			
 			if(items.Count !=1){
 			items.RemoveAt(0);
