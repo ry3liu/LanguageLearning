@@ -25,11 +25,14 @@ public class threeScene : MonoBehaviour
 	public List<string> testExample = new List<string>();
 	public TextMeshProUGUI instructionText;
 	
+	public Audio [] soundForestScene = new Audio[4];
+	
 	Sprite pic;
 	
 	RectTransform trans;
 	
 	GameObject[] listingItem;
+	public GameObject person;
 	
 	//in 2D array, food =0, cold=1, sick=2
 	
@@ -45,6 +48,10 @@ public class threeScene : MonoBehaviour
 	
     void Start()
     {
+		
+		FindObjectOfType<audioManager>().setSound("sympathy",soundForestScene);
+		FindObjectOfType<audioManager>().setSound("cheering",soundForestScene);
+		
 		listingItem = GameObject.FindGameObjectsWithTag("itemInForest");
 		wordList.Add("les coquilles Saint-Jacques", "scallops");
 		wordList.Add("le poivron", "bellpepper");
@@ -60,15 +67,15 @@ public class threeScene : MonoBehaviour
 		
 		//storeWord.printhi();
         frenchFood = new List<string>{"les coquilles Saint-Jacques", "le poivron","le chou-fleur","l'aubergine"};
-		frenchCold = new List<string>{"la moufle","le casque"};
+		frenchCold = new List<string>{"le casque", "la moufle"};
 		frenchSick = new List<string>{"le sparadrap", "la pilule"};
 		testExample.Add("les coquilles Saint-Jacques");
 		testExample.Add("le casque");
 		testExample.Add("le sparadrap");
 		
 		
-		numToPic.Add(0,"man_cold");
-		numToPic.Add(1,"man_hungry_need_add_food");
+		numToPic.Add(0,"man_hungry_need_add_food");
+		numToPic.Add(1,"man_cold");
 		numToPic.Add(2,"man_vomiting");
 		
 		numToWord.Add(0,"a faim");
@@ -117,8 +124,8 @@ public class threeScene : MonoBehaviour
 			trackNumInOverall = trackNumInOverall+1;
 			
 		}
-		houseKeeperFunction(0,0);
 		
+		callHouse();
     }
 
 	
@@ -135,7 +142,7 @@ public class threeScene : MonoBehaviour
 		int index = 0;
 		foreach(GameObject eachItem in listingItem){
 			
-		
+		eachItem.name = englishString[index,column];
 		trans = eachItem.GetComponent<RectTransform>();
 		trans.sizeDelta=new Vector2(150,150);
 		
@@ -153,7 +160,13 @@ public class threeScene : MonoBehaviour
 	
 	
 	public void buttonClickThreeScene(string buttonStr){
-		print(buttonStr);
+		print("french"+buttonStr);
+		print("english"+wordList[buttonStr]);
+		GameObject imageButton = GameObject.Find(wordList[buttonStr]);
+		print(imageButton.name);
+		
+		StartCoroutine(moveItem(imageButton, buttonStr));
+		
 	}
 	
 	public void houseKeeperFunction(int typeScene, int withinScene){
@@ -164,13 +177,49 @@ public class threeScene : MonoBehaviour
 		
 		arrayNum.Remove(typeScene);
 		foreach(int individual in arrayNum){
-			int number = Random.Range(0,2);
+			//int number = Random.Range(0,2);
+			int number = 0;
 			buttonListThreeScene[individual].GetComponentInChildren<Text>().text= numToList[individual][number];
 		}
 		setItemPic(0,wordThreeInstanceEnglish);
+		
+		setFunction();
 		//load words
 	}
 	
+	IEnumerator moveItem( GameObject thisItem, string buttonSTR){
+		Vector2 Original = thisItem.transform.position;
+		yield return new WaitForSeconds(1f);
+		thisItem.transform.position = Vector2.Lerp(Original, person.transform.position, 1);
+		print(numToList[0][0]);
+		//string frenchW = wordList.FirstOrDefault(x => x.Value == thisItem.name).Key;
+		print(buttonSTR);
+		yield return new WaitForSeconds(0.8f);
+		if(numToList[trackRow].Contains(buttonSTR)){
+			print("### entered the right item");
+			FindObjectOfType<audioManager>().playSound("cheering",soundForestScene);
+			yield return new WaitForSeconds(1.5f);
+			callHouse();
+		}
+		else{
+			FindObjectOfType<audioManager>().playSound("sympathy",soundForestScene);
+			yield return new WaitForSeconds(1.5f);
+			thisItem.transform.position = Vector2.Lerp(person.transform.position, Original, 1);
+		}
+		
+	}
+	
+	private void callHouse(){
+		houseKeeperFunction(trackRow,trackColumn);
+		if(trackRow <2){
+			trackRow+=1;
+		}
+		else{
+			trackColumn+=1;
+		}
+		
+		
+	}
 	
     // Update is called once per frame
     
