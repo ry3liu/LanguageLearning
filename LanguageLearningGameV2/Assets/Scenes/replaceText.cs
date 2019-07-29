@@ -13,7 +13,8 @@ public class replaceText : MonoBehaviour
 	public storeWord instanceOfStoreWord;
 	string[] printWord = new string[4];
 	public Button[] buttonList = new Button [4]; 
-	public Audio [] soundRecognizeWord = new Audio[4];
+	//public Audio [] soundRecognizeWord = new Audio[4];
+	List<Audio> soundRecognizeWord = new List<Audio>();
 	
     void Start()
     {

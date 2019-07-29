@@ -20,7 +20,8 @@ public class storeWord : MonoBehaviour
 	GameObject input;
 	
 	private static bool entered = false;
-	public Audio [] sounds = new Audio[2];
+	//public Audio [] sounds = new Audio[2];
+	List<Audio> sounds = new List<Audio>();
 	
 	SpriteRenderer one;
 	Sprite pic;
@@ -35,6 +36,7 @@ public class storeWord : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		wordList.Clear();
 		 i =-1;
 		canvas = GameObject.Find("Canvas");
 		ButtonPrefab = GameObject.Find("Button");
@@ -58,6 +60,7 @@ public class storeWord : MonoBehaviour
 		//or words.Value
 		
 		foreach(KeyValuePair<string, string> words in wordList){
+			print(words.Key);
 			french_words.Add(words.Key.ToLower());
 			french.Add(words.Key.ToLower(), words.Key);
 		}
@@ -181,6 +184,7 @@ public class storeWord : MonoBehaviour
 		else{
 		
 		string frenchFromButton = updatePic.listWords[i];
+		print("here's the French " +french[frenchFromButton]);
 		string Englishwords = wordList[french[frenchFromButton]];
 		
 		//english list of selected word

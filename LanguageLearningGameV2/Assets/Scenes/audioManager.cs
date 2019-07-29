@@ -15,7 +15,7 @@ public class audioManager : MonoBehaviour
 	}
 	
 	//void Awake(){
-		public void setSound(string eachS, Audio[]sounds){
+		public void setSound(string eachS, List<Audio> sounds){
 		
 		print("==========enters awake after all");
 	
@@ -41,7 +41,8 @@ public class audioManager : MonoBehaviour
 			}
 			}
 			*/
-			sounds[u]=eachSound;
+			//sounds[u]=eachSound;
+			sounds.Add(eachSound);
 			print("in the audio manager function and display name" + u + " " +sounds[u].name);
 			u=u+1;
 			
@@ -51,7 +52,7 @@ public class audioManager : MonoBehaviour
 	}
 	
 	
-	public void playSound(string name, Audio[]sounds){
+	public void playSound(string name, List<Audio> sounds){
 		print("entered play sound");
 		print("name to search for: " + name);
 		
@@ -65,7 +66,8 @@ public class audioManager : MonoBehaviour
 			}
 		}*/
 		
-		Audio oneSound = Array.Find(sounds, sound=>sound.name == name);
+		//Audio oneSound = Array.Find(sounds, sound=>sound.name == name);
+		Audio oneSound = sounds.Find(sound=>sound.name == name);
 		print("trying to play the sound" + oneSound.name);
 		oneSound.audioSource.Play();
 	}

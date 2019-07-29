@@ -25,7 +25,8 @@ public class threeScene : MonoBehaviour
 	public List<string> testExample = new List<string>();
 	public TextMeshProUGUI instructionText;
 	
-	public Audio [] soundForestScene = new Audio[4];
+	//public Audio [] soundForestScene = new Audio[4];
+	List<Audio> soundForestScene = new List<Audio>();
 	
 	Sprite pic;
 	
@@ -53,6 +54,7 @@ public class threeScene : MonoBehaviour
 		FindObjectOfType<audioManager>().setSound("cheering",soundForestScene);
 		
 		listingItem = GameObject.FindGameObjectsWithTag("itemInForest");
+		/*
 		wordList.Add("les coquilles Saint-Jacques", "scallops");
 		wordList.Add("le poivron", "bellpepper");
 		wordList.Add("le chou-fleur", "cauliflower");
@@ -64,6 +66,7 @@ public class threeScene : MonoBehaviour
 		
 		wordList.Add("le casque", "helmet");
 		wordList.Add("la pilule", "pill");
+		*/
 		
 		//storeWord.printhi();
         frenchFood = new List<string>{"les coquilles Saint-Jacques", "le poivron","le chou-fleur","l'aubergine"};
@@ -72,6 +75,12 @@ public class threeScene : MonoBehaviour
 		testExample.Add("les coquilles Saint-Jacques");
 		testExample.Add("le casque");
 		testExample.Add("le sparadrap");
+		
+		
+		
+		testExample.Add("le poivron");
+		testExample.Add("la moufle");
+		testExample.Add("la pilule");
 		
 		
 		numToPic.Add(0,"man_hungry_need_add_food");
@@ -96,28 +105,28 @@ public class threeScene : MonoBehaviour
 		
 		
 		
-		//foreach(string frenchString in updatePic.listWords ){
-		foreach(string frenchString in testExample ){
+		foreach(string frenchString in updatePic.listWords ){
+		//foreach(string frenchString in testExample ){
 			if(frenchFood.Contains(frenchString)){
 				wordThreeInstanceFrench[0,ifrenchFood] = frenchString;
 				//wordThreeInstanceEnglish[0,ifrenchFood] = storeWord.english_words[trackNumInOverall];
-				wordThreeInstanceEnglish[0,ifrenchFood] =wordList[frenchString];
-				print(wordList[frenchString]);
-				//ifrenchFood = ifrenchFood+1;
+				wordThreeInstanceEnglish[0,ifrenchFood] =storeWord.wordList[frenchString];
+				print(storeWord.wordList[frenchString]);
+				ifrenchFood = ifrenchFood+1;
 			}
 			else if(frenchCold.Contains(frenchString)){
 				wordThreeInstanceFrench[1,ifrenchCold] = frenchString;
 				//wordThreeInstanceEnglish[1,ifrenchCold] = storeWord.english_words[trackNumInOverall];
-				wordThreeInstanceEnglish[1,ifrenchFood] =wordList[frenchString];
+				wordThreeInstanceEnglish[1,ifrenchCold] =storeWord.wordList[frenchString];
 				ifrenchCold = ifrenchCold+1;
-				print(wordList[frenchString]);
+				print(storeWord.wordList[frenchString]);
 			}
 			else if(frenchSick.Contains(frenchString)){
 				wordThreeInstanceFrench[2,ifrenchSick] = frenchString;
-				wordThreeInstanceEnglish[2,ifrenchFood] =wordList[frenchString];
+				wordThreeInstanceEnglish[2,ifrenchSick] =storeWord.wordList[frenchString];
 				//wordThreeInstanceEnglish[2,ifrenchSick] = storeWord.english_words[trackNumInOverall];
 				ifrenchSick = ifrenchSick+1;
-				print(wordList[frenchString]);
+				print(storeWord.wordList[frenchString]);
 			}
 			
 			
@@ -138,31 +147,29 @@ public class threeScene : MonoBehaviour
 		}
 	}
 	
-	public void setItemPic(int column,string[,] englishString){
-		int index = 0;
-		foreach(GameObject eachItem in listingItem){
+	public void setItemPic( GameObject picToSet, string englishName){
+		
 			
-		eachItem.name = englishString[index,column];
-		trans = eachItem.GetComponent<RectTransform>();
+		picToSet.name = englishName;
+		trans = picToSet.GetComponent<RectTransform>();
 		trans.sizeDelta=new Vector2(150,150);
 		
 		//manage the upper and lower case.
 		//works
 		//pic = Resources.Load<Sprite>(wordList[french[found[0]]]);
-		pic = Resources.Load<Sprite>(englishString[index,column]);
-		eachItem.GetComponent<Image>().sprite = pic;
-		
-		index+=1;
+		pic = Resources.Load<Sprite>(englishName);
+		picToSet.GetComponent<Image>().sprite = pic;
 		
 		
-		}
+		
+		
 	}
 	
 	
 	public void buttonClickThreeScene(string buttonStr){
 		print("french"+buttonStr);
-		print("english"+wordList[buttonStr]);
-		GameObject imageButton = GameObject.Find(wordList[buttonStr]);
+		print("english"+storeWord.wordList[buttonStr]);
+		GameObject imageButton = GameObject.Find(storeWord.wordList[buttonStr]);
 		print(imageButton.name);
 		
 		StartCoroutine(moveItem(imageButton, buttonStr));
@@ -172,16 +179,24 @@ public class threeScene : MonoBehaviour
 	public void houseKeeperFunction(int typeScene, int withinScene){
 		List<int> arrayNum = new List<int> {0,1,2};
 		instanceOfStoreWord.sayHi(numToPic[typeScene],false);
+		print("scene to load: "+typeScene);
 		instructionText.text = instruction[typeScene];
-		buttonListThreeScene[typeScene].GetComponentInChildren<Text>().text= numToList[typeScene][withinScene];
-		
+		buttonListThreeScene[typeScene].GetComponentInChildren<Text>().text= wordThreeInstanceFrench[typeScene, withinScene];
+		print("change button name");
+		print("item1" + wordThreeInstanceEnglish[0, 0]);
+		print("item1" + wordThreeInstanceEnglish[typeScene, withinScene]);
+		setItemPic(listingItem[typeScene],wordThreeInstanceEnglish[typeScene, withinScene]);
+		//shouldn't be numToList, it should be word list that users have chosen.
 		arrayNum.Remove(typeScene);
 		foreach(int individual in arrayNum){
-			//int number = Random.Range(0,2);
-			int number = 0;
-			buttonListThreeScene[individual].GetComponentInChildren<Text>().text= numToList[individual][number];
+			int number = Random.Range(0,2);
+			//int number = 0;
+			buttonListThreeScene[individual].GetComponentInChildren<Text>().text= wordThreeInstanceFrench[individual, number];
+			setItemPic(listingItem[individual],wordThreeInstanceEnglish[individual, number]);
+			print("item2" + wordThreeInstanceEnglish[individual, number]);
+			print("item1" + wordThreeInstanceEnglish[individual, 1]);
 		}
-		setItemPic(0,wordThreeInstanceEnglish);
+		//setItemPic(trackColumn,wordThreeInstanceEnglish);
 		
 		setFunction();
 		//load words
@@ -191,14 +206,17 @@ public class threeScene : MonoBehaviour
 		Vector2 Original = thisItem.transform.position;
 		yield return new WaitForSeconds(1f);
 		thisItem.transform.position = Vector2.Lerp(Original, person.transform.position, 1);
-		print(numToList[0][0]);
+		print(numToList[trackRow][0]);
 		//string frenchW = wordList.FirstOrDefault(x => x.Value == thisItem.name).Key;
 		print(buttonSTR);
 		yield return new WaitForSeconds(0.8f);
 		if(numToList[trackRow].Contains(buttonSTR)){
 			print("### entered the right item");
 			FindObjectOfType<audioManager>().playSound("cheering",soundForestScene);
+			
 			yield return new WaitForSeconds(1.5f);
+			thisItem.transform.position = Vector2.Lerp(person.transform.position, Original, 1);
+			updateRowColumn();
 			callHouse();
 		}
 		else{
@@ -211,14 +229,24 @@ public class threeScene : MonoBehaviour
 	
 	private void callHouse(){
 		houseKeeperFunction(trackRow,trackColumn);
-		if(trackRow <2){
+		print(trackRow+" ,"+trackColumn);
+		
+		
+	}
+	
+	private void updateRowColumn(){
+		
+		if(trackColumn <1)
+		{
+		trackColumn+=1;}
+			
+		else if(trackRow <1){
+			trackColumn=0;
 			trackRow+=1;
 		}
 		else{
-			trackColumn+=1;
+			SceneManager.LoadScene("endScene");
 		}
-		
-		
 	}
 	
     // Update is called once per frame

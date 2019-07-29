@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/recognizeWords.unity
     guid: e4779ced9cec6f54f9b4facf28863f97
+  - enabled: 1
+    path: Assets/Scenes/endScene.unity
+    guid: 7dc197ad7d42cc945b7894d788924cb8
   m_configObjects: {}

@@ -19,7 +19,9 @@ public class triggerBackpack : MonoBehaviour
 	
 	public scriptA callAnotherFunction;
 	public mouseDrag mouse;
-	public Audio [] soundFeedback = new Audio[3];
+	//public Audio [] soundFeedback = new Audio[3];
+	List<Audio> soundFeedback = new List<Audio>();
+	
 	GameObject spriteOne;
 	GameObject cabin;
 	private List<string> found;

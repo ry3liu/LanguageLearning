@@ -76,7 +76,7 @@ public class instantButton : MonoBehaviour
 		generatePreFab(text, panel.GetComponent<RectTransform>(), addition, panel,"showButton", listWordButton);
 		addition = addition +30;
 		
-		if(listWordButton.Count>4){
+		if(listWordButton.Count>2){
 			buttonFinish.SetActive(true);
 		}
 	}
